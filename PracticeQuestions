@@ -8,7 +8,7 @@
 → Only server1,2 and 3 starts, when corresponding host controller is started
 → server1, server2, server3 and server4 require both messaging and high availability.
 
-❏ Question 2: CLI usage and Datasource configuration [Total Scores 5]
+❏ Question 2: CLI usage and Datasource configuration 
 ❏ Create a datasource for ​ MySQL ​ database with JNDI name ​ MySQLDS ​ via CLI in standalone mode and share the CLI command and set below attributes and share the CLI command to Monitoring Datasource statistics and the result as well.
 ❏ Prepared statement cache ->40
 ❏ Min-pool ->10
