@@ -1,0 +1,111 @@
+❏ Question 1: EAP in Standalone and Domain Mode 
+❏ Standalone Configuration ​ : ​ Take a fresh installation of EAP 7.0. Start two standalone servers on the same machine using the same default port(like http-8080, management 9990 etc). Server-1  does not require messaging and Server-2 requires clustering.
+❏ Domain-Host configuration ​ : Create 3 controller, one Domain(name=master) and two host(host1 and host2). 
+→ Both hosts use Domain Controller Discovery and Failover Configuration to connect to the Domain.
+→ Domain controller does not have any server.
+→ host1 has two servers, server1 and server2 belonging to host1-server-group.
+→ host2 also contains two servers, server3 and server4 belonging to host2-server-group.
+→ Only server1,2 and 3 starts, when corresponding host controller is started
+→ server1, server2, server3 and server4 require both messaging and high availability.
+
+❏ Question 2: CLI usage and Datasource configuration [Total Scores 5]
+❏ Create a datasource for ​ MySQL ​ database with JNDI name ​ MySQLDS ​ via CLI in standalone mode and share the CLI command and set below attributes and share the CLI command to Monitoring Datasource statistics and the result as well.
+❏ Prepared statement cache ->40
+❏ Min-pool ->10
+❏ Max-pool ->25
+
+❏ Question 3: Messaging Subsystem 
+❏ Configure activemq(artemis) to accept http connection, http connection
+factory JNDI name=”jms/CF/RemoteConnectionFactory” and queue JNDI
+name=”jms/queue/TestQueue” in domain mode.
+❏ Make the required changes to “ server2 and server4” respectively from
+“​ Domain-Host configuration ​ ” question from “​ Question 1: EAP in Standalone and Domain Mode​ ” above. 
+→ Create two users: jmsadmin and jmsuser.
+→ jmsadmin can send and consume messages from the queue.
+→ jmsuser can only consume messages from the queue.
+
+
+
+
+
+
+
+❏ Question 4: Logging Subsystem 
+❏ Create a new handler such that it will rotate on hourly basis and it will log DEBUG level messages related to the “​ com.arjuna” ​ package only. Make the required changes to “Server-1 and Server-2” from “​ Standalone Configuration ​ ” question from “​ Question 1: EAP in Standalone and Domain Mode​ ” above. 
+
+❏ In domain mode, configure the logging subsystem such that, for all servers of the main-server-group, the logs should be created at a custom location “/home/EAPLogs/MainServerGroup/” and for the other-server-group the logs should be at “/home/EAPLogs/OtherServerGroup/” . Make the required changes to the server nodes used in “​ Question 1: EAP in Standalone and Domain Mode​ ” from Domain-Host configuration question above. 
+
+❏ Question 6: Undertow Subsystem 
+Make the following changes to “Server-1 and Server-2” from “​ Standalone Configuration ​ ” question from “​ Question 1: EAP in Standalone and Domain Mode​ ” above.
+❏ Set “max-connections” to 1024 for http listener and share the CLI command.
+❏ Deploy an provided ”FirstWebApp.war” application to Jboss server and access it on context root as follows : ​ http://localhost:8080/​ 
+
+
+
+
+Some more : 
+
+
+1. Install EAP under the "/opt/ad248" folder. It should be like "opt/ad248/bin"
+Username: webuser Password: secret1
+
+2. Create new domain directory call "webserver" using the below command, 
+
+cp -R /opt/ad248/Domain /opt/ad248/webserver
+
+Start it with " ./domain.sh -Djboss .domain.base.dir=/opt/ad248/webserver"
+ Access the management console.
+
+03. Set the HTTP tuning parameters which includes the below changes,
+﻿﻿﻿A. Set HTTP port to 8080
+﻿﻿﻿B. Configure the AJP port
+﻿﻿﻿C. Set the Max number of HTTP connection to 60
+
+03. Set the JVM parameters at the Server Group level.
+ Create a group call SimpleGroup and server instance call server1(the name could be different)
+
+ A. Set the Max Heap as 1182M and Initial heap as 1182M
+B. Set the Stack size as.256k 
+
+/For server level:
+/server-group=Group1/jvm=<give jvm name>:write-attribute(name=stack-size,value=256)
+/server-group=Group1/jvm=<give jvm name>:write-attribute(name=heap-size,value=1182M)
+/server-group=Group1/jvm=<give jvm name>:write-attribute(name=max-heap-size,,value=256)
+
+
+If at host-controller level: 
+/host=host3/jvm=default:write-attribute(name=stack-size,value=265)
+
+04. Create Datasource as Test DB  as in Guided Ex: Configuring a Data Source (which has dependency on Configuring JDBC Drivers)
+
+05. Configure an Non-XA Datasource as in GE:  Configuring an XA Datasource
+
+06. Create a security Domain as in GE Securing an Application (page 403)
+
+07. Set up a domain mode as below:
+Host 1 → Master, Host2 → Slave
+Server group names: Cluster and Message
+Servers names :  CLusterS1, MessageS1 which runs on host1
+Servers names : CLusterS2 ,messageS2 which runs on host2
+
+08. Set up a cluster and change the previous setup of domain mode:
+ Use full-ha profile for server-group → CLuster
+Use Full profile for server-group---> Message 
+
+JMS:
+Create a connection Factory  and queue as in Guided exercise : Configuring Messaging Resources (page : 353)
+Put tester role in security settings:  
+
+		 	 	 		
+			
+				
+For Example something like below:	
+Apply a security setting on a Queue create before							
+		
+/subsystem=messaging-activemq/server=default/security-setting=\
+jms.topic.StockQuotes.#/role=Testerr:add(\
+send=true,consume=true)
+
+Q. create a Application  user named “clientjms”  with tester role.
+
+09. Start the application root context as in “Demonstration: Setting the root web location” pg no 579
