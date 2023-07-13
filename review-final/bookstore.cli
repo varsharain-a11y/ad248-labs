@@ -1,0 +1,1 @@
+data-source add --profile=<profile> --name=<database> --driver-name=<driver> --jndi-name=<jndi-name> --connection-url=<url> --user-name=<login> --password=<password>

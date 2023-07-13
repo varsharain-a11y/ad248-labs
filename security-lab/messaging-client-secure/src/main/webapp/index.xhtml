@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="title">
+	JMS Message Sender (Client)
+    </ui:define>
+	<ui:define name="application_name">
+    	JMS Messaging Client
+    </ui:define>
+	<ui:define name="content">
+		<h1>JMS Message Sender</h1>
+		<ul>
+			<li>This is a simple web app to send JMS messages to the EAP 7 Message Broker</li>
+		</ul>
+		<br class="clear"/>
+		<h:form id="form">
+			<h:messages styleClass="messages"/>
+			<p class="input">
+				<h:outputLabel value="Message Count:" for="count" />
+				<h:inputText value="#{message.count}" id="count" required="true" requiredMessage="Message Count is required"/>
+			</p>
+			<p class="input">
+				<h:outputLabel value="Message Label:" for="label" />
+				<h:inputText value="#{message.label}" id="label" required="true" requiredMessage="Message Label is required"/>
+			</p>
+			<br class="clear"/>
+			<p class="input">
+				<h:outputLabel value="Message to send:" for="message" />
+				<h:inputTextarea cols="50" rows="4" id="message" value="#{message.message}" required="true" requiredMessage="Message is required"></h:inputTextarea>		
+			</p>
+			<br class="clear"/>
+			<br class="clear"/>
+			<p class="input">
+			    <h:commandButton action="#{message.sendMessages()}"  value="Send Messages" styleClass="btn" />
+			</p>
+		</h:form>
+	</ui:define>
+</ui:composition>

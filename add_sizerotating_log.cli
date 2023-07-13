@@ -1,0 +1,9 @@
+batch
+/subsystem=logging/size-rotating-file-handler=FILE_BY_SIZE_ROTATING/:add\
+(file={"path"=>"production-server.log",\
+"relative-to"=>"jboss.server.log.dir"},\
+formatter="%d{HH:mm:ss,SSS} %-5p [%c] (%t) %s%E%n",\
+level=INFO,max-backup-index=3,name=FILE_BY_SIZE_ROTATING,\
+rotate-size=1m)
+
+run-batch

@@ -1,0 +1,112 @@
+dn: dc=redhat,dc=com
+changetype: add
+objectclass: dcObject
+objectclass: organization
+o: RedHat
+dc: redhat
+
+dn: cn=Manager,dc=redhat,dc=com
+changetype: add
+objectclass: organizationalRole
+cn: Manager
+
+dn: ou=people,dc=redhat,dc=com
+changetype: add
+ou: people
+description: All people in organisation
+objectclass: organizationalunit
+
+dn: uid=admin,ou=people,dc=redhat,dc=com
+changetype: add
+objectclass: top
+objectclass: inetorgperson
+uid: admin
+cn: Joe
+sn: Admin
+userPassword: admin
+
+dn: uid=bt1,ou=people,dc=redhat,dc=com
+changetype: add
+objectclass: top
+objectclass: inetorgperson
+uid: bt1
+cn: Bob1
+sn: Tester1
+userPassword: ldap1
+
+dn: uid=bt2,ou=people,dc=redhat,dc=com
+changetype: add
+objectclass: top
+objectclass: inetorgperson
+uid: bt2
+cn: Bob2
+sn: Tester2
+userPassword: ldap2
+
+dn: uid=bt3,ou=people,dc=redhat,dc=com
+changetype: add
+objectclass: top
+objectclass: inetorgperson
+uid: bt3
+cn: Bob3
+sn: Tester3
+userPassword: ldap3
+
+dn: uid=bt4,ou=people,dc=redhat,dc=com
+changetype: add
+objectclass: top
+objectclass: inetorgperson
+uid: bt4
+cn: Bob4
+sn: Tester4
+userPassword: ldap4
+
+dn: uid=bt5,ou=people,dc=redhat,dc=com
+changetype: add
+objectclass: top
+objectclass: inetorgperson
+uid: bt5
+cn: Bob5
+sn: Tester5
+userPassword: ldap5
+
+dn: ou=Roles,dc=redhat,dc=com
+changetype: add
+objectclass: top
+objectclass: organizationalUnit
+ou: Roles
+
+dn: cn=admin,ou=Roles,dc=redhat,dc=com
+changetype: add
+objectclass: top
+objectclass: groupOfNames
+cn: admin
+member: uid=bt1,ou=people,dc=redhat,dc=com
+description: The eBikes Admin
+
+dn: cn=customer,ou=Roles,dc=redhat,dc=com
+changetype: add
+objectclass: top
+objectclass: groupOfNames
+cn: customer
+member: uid=bt1,ou=people,dc=redhat,dc=com
+member: uid=bt2,ou=people,dc=redhat,dc=com
+member: uid=bt3,ou=people,dc=redhat,dc=com
+member: uid=bt4,ou=people,dc=redhat,dc=com
+member: uid=bt5,ou=people,dc=redhat,dc=com
+description: eBikes Customer
+
+dn: cn=admin,ou=Roles,dc=redhat,dc=com
+changetype: modify
+replace: objectclass
+objectclass: top
+objectclass: groupOfNames
+
+replace: cn
+cn: admin
+
+replace: member
+member: uid=admin,ou=people,dc=redhat,dc=com
+
+replace: description
+description: eBikes Admin

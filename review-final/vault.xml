@@ -1,0 +1,8 @@
+<vault>
+  <vault-option name="KEYSTORE_URL" value="/opt/domain/key.store"/>
+  <vault-option name="KEYSTORE_PASSWORD" value="MASK-3hua3rzO0s7ygAUVPz1ugT"/>
+  <vault-option name="KEYSTORE_ALIAS" value="Vault"/>
+  <vault-option name="SALT" value="ABCD1234"/>
+  <vault-option name="ITERATION_COUNT" value="95"/>
+  <vault-option name="ENC_FILE_DIR" value="/opt/domain/vault/"/>
+</vault>

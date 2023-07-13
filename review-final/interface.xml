@@ -1,0 +1,3 @@
+<interface name="cluster">
+  <inet-address value="${jboss.bind.address.cluster:127.0.0.1}" />
+</interface>

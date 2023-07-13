@@ -1,0 +1,8 @@
+<vault>
+  <vault-option name="KEYSTORE_URL" value="/home/student/vault.keystore"/>
+  <vault-option name="KEYSTORE_PASSWORD" value="MASK-31x/z0Xn83H4JaL0h5eK/N"/>
+  <vault-option name="KEYSTORE_ALIAS" value="vault"/>
+  <vault-option name="SALT" value="12345678"/>
+  <vault-option name="ITERATION_COUNT" value="50"/>
+  <vault-option name="ENC_FILE_DIR" value="/home/student/"/>
+</vault>

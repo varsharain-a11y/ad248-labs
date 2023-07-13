@@ -1,0 +1,2 @@
+/profile=full-ha/subsystem=security/security-domain=bksecurity:add()
+/profile=full-ha/subsystem=security/security-domain=bksecurity/authentication=classic:add(login-modules=[{"code"=>"", "flag"=>"", "module-options"=>[("dsJndiName"=>""),("principalsQuery"=>""), ("rolesQuery"=>""),("hashAlgorithm"=>""),("hashEncoding"=>"")]}])

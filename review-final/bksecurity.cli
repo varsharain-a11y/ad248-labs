@@ -1,0 +1,1 @@
+data-source add --profile=<profile> --name=bksecurity --driver-name=<driver> --jndi-name=<jndi-name> --connection-url=<connection-URL> --user-name=<login> --password=<password>
